@@ -50,6 +50,13 @@ public class Image {
                 current = ++
             }
         }
+        if(tokens[0] != 'P3'){
+            throws new Exception("le token ne correspond pas");
+            if(token.length <= 3){
+                int largeur = Integer.parseInt(tokens[1]);
+                int hauteur = Integer.parseInt(tokens[2]);
+                int max = Integer.parseInt(tokens[3]);
+            }
+        }
     }
-    
 }
