@@ -69,7 +69,7 @@ public class ProcessController {
                                         File errorFile, String[] args) throws IOException {
 
         // TODO Utiliser executeSimple pour lancer le processus de base
-        Process process = null;
+        executeSimple(command, args);
 
         // TODO Si outputFile n'est pas null, configurer la redirection
         if(outputFile != null){
@@ -84,7 +84,7 @@ public class ProcessController {
         System.out.println("Redirection configurée - Sortie: " + outputFile + ", Erreur: " + errorFile);
 
         // TODO Relancer le processus avec les redirections
-        currentProcess = null;
+        currentProcess = processBuilder.start();
         return currentProcess;
     }
 
@@ -99,6 +99,7 @@ public class ProcessController {
      */
     public Process executeInteractive(String command, String[] args) throws IOException {
         // TODO Utiliser executeSimple pour lancer le processus
+        executeSimple(command, args);
         // (Les flux restent accessibles par défaut)
 
         System.out.println("Mode interactif activé pour : " + command);
@@ -137,7 +138,9 @@ public class ProcessController {
 
         if (outputStream != null) {
             // TODO Écrire les données + retour à la ligne
-            // TODO Appeler flush() pour forcer l'envoi
+            input = "Hello World\n"
+            //Appeler flush() pour forcer l'envoi
+            flush();
         }
 
         System.out.println("Envoi vers le processus : " + input);
@@ -152,6 +155,9 @@ public class ProcessController {
 
         if (inputStream != null) {
             // TODO Vérifier s'il y a des données avec inputStream.available()
+            if(inputStream.available()){
+                return process;
+            }
             // TODO Si oui, les lire et les retourner comme String
         }
 
