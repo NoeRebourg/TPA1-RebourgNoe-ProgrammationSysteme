@@ -7,7 +7,6 @@ public class CalculSequentiel {
 
         long debut = System.nanoTime();
         long sommeTotal = 0;
-        Calcule[] thread = new Thread(10);
 
         // TODO: Ce code sera remplacé par une version parallèle
         for (int i = 0; i < DONNEES.length; i++) {
@@ -17,6 +16,7 @@ public class CalculSequentiel {
             long resultat = 0;
             for (int j = 0; j < MULTIPLICATEUR; j++) {
                 resultat += valeur * valeur + valeur;
+                                // on pourrais aussi mettre un sleep
             }
 
             sommeTotal += resultat;
